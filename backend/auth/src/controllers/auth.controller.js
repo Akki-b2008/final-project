@@ -139,7 +139,7 @@ const logout = async (req, res) => {
     await redis.set(`blacklist : ${token}`, "true", "EX", 7 * 24 * 60 * 60);
   }
 
-  res.clearCookies("token", {
+  res.clearCookie("token", {
     httpOnly: true,
     secure: true,
   });
@@ -149,9 +149,67 @@ const logout = async (req, res) => {
   });
 };
 
+const getUserAddresses = async (req, res) => {
+  const { id } = req.user;
+
+  const user = await userModel.findById({ _id: id }).select("addresses");
+
+  if (!user) {
+    return res.status(401).json({
+      message: "user not found",
+    });
+  }
+
+  return res.status(200).json({
+    message: "User's addresses fetched successfully",
+    addresses: user.addresses,
+  });
+};
+
+const addUserAddresses = async (req, res) => {
+  const { id } = req.user;
+
+  const { street, city, state, pincode, country, isDefault } = req.body;
+
+  const user = await userModel.findOneAndUpdate(
+    { _id: id },
+    {
+      $push: {
+        addresses: {
+          street,
+          city,
+          state,
+          pincode,
+          country,
+          isDefault,
+        },
+      },
+    },
+    { new: true }
+  );
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found",
+    });
+  }
+
+  return res.status(201).json({
+    message: "Adderess added successfully",
+    addresses: user.addresses,
+  });
+};
+
+const deleteUserAddresses = async (req, res) => {
+  console.log("hi");
+};
+
 module.exports = {
   register,
   login,
   getCurrentUser,
   logout,
+  getUserAddresses,
+  addUserAddresses,
+  deleteUserAddresses,
 };
