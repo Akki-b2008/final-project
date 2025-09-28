@@ -33,6 +33,10 @@ router.post(
   authControllers.addUserAddresses
 );
 
-
+router.delete(
+  "/users/me/addresses/:addressId",
+  authMiddlware,
+  authControllers.deleteUserAddresses
+);
 
 module.exports = router;

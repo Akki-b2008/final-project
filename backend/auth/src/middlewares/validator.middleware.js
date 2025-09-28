@@ -20,17 +20,38 @@ const registerUserValidations = [
   body("email").isEmail().withMessage("Invalid email address"),
   body("password")
     .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 characters long"),
+    .withMessage("Password must be at least 6 characters long")
+    .bail()
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/)
+    .withMessage(
+      "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
+    ),
   body("fullName.firstName")
     .isString()
     .withMessage("First name must be a string")
     .notEmpty()
-    .withMessage("First name is required"),
+    .withMessage("First name is required")
+    .bail()
+    .customSanitizer((value) => {
+      if (!value) return value;
+      const trimmed = value.trim();
+      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+    })
+    .matches(/^[A-Z][a-zA-Z]*$/)
+    .withMessage("First name must start with a capital letter and contain only letters"),
   body("fullName.lastName")
     .isString()
     .withMessage("Last name must be a string")
     .notEmpty()
-    .withMessage("Last name is required"),
+    .withMessage("Last name is required")
+    .bail()
+    .customSanitizer((value) => {
+      if (!value) return value;
+      const trimmed = value.trim();
+      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+    })
+    .matches(/^[A-Z][a-zA-Z]*$/)
+    .withMessage("Last name must start with a capital letter and contain only letters"),
   body("role")
     .optional()
     .isIn(["user", "seller"])

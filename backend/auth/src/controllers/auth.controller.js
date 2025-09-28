@@ -152,7 +152,7 @@ const logout = async (req, res) => {
 const getUserAddresses = async (req, res) => {
   const { id } = req.user;
 
-  const user = await userModel.findById({ _id: id }).select("addresses");
+  const user = await userModel.findById(id).select("addresses");
 
   if (!user) {
     return res.status(401).json({
@@ -201,7 +201,55 @@ const addUserAddresses = async (req, res) => {
 };
 
 const deleteUserAddresses = async (req, res) => {
-  console.log("hi");
+  const { id } = req.user;
+
+  const { addressId } = req.params;
+
+  const isAddressExist = await userModel.findOne({
+    _id: id,
+    "addresses._id": addressId,
+  });
+
+  if (!isAddressExist) {
+    return res.status(404).json({
+      message: "Address not found",
+    });
+  }
+
+  const user = await userModel.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      $pull: {
+        addresses: {
+          _id: addressId,
+        },
+      },
+    },
+    { new: true }
+  );
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found",
+    });
+  }
+
+  const addressExists = user.addresses.some(
+    (add) => add._id.toString() === addressId
+  );
+
+  if (addressExists) {
+    return res.status(500).json({
+      message: "Failed to delete address",
+    });
+  }
+
+  return res.status(200).json({
+    message: "Address deleted successfully",
+    addresses: user.addresses,
+  });
 };
 
 module.exports = {
