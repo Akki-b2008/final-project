@@ -41,4 +41,46 @@ const createProductValidators = [
   handleValidationErrors,
 ];
 
-module.exports = { createProductValidators };
+// PATCH /api/products/:id validators
+// All fields optional, but if provided must satisfy constraints.
+// Accepts either flat priceAmount/priceCurrency (legacy style) OR nested price object.
+const updateProductValidators = [
+  body("title")
+    .optional()
+    .isString().withMessage("title must be a string")
+    .trim()
+    .notEmpty().withMessage("title cannot be empty"),
+  body("description")
+    .optional()
+    .isString().withMessage("description must be a string")
+    .trim()
+    .isLength({ max: 500 }).withMessage("description max length is 500 characters"),
+  // Support nested price object
+  body("price.amount")
+    .optional()
+    .isFloat({ gt: 0 }).withMessage("price.amount must be a number > 0"),
+  body("price.currency")
+    .optional()
+    .isString().withMessage("price.currency must be a string")
+    .customSanitizer(v => v.toUpperCase())
+    .isIn(["USD", "INR"]).withMessage("price.currency must be USD or INR"),
+  // Also support flat style fields if controller later adds mapping
+  body("priceAmount")
+    .optional()
+    .isFloat({ gt: 0 }).withMessage("priceAmount must be a number > 0"),
+  body("priceCurrency")
+    .optional()
+    .isString().withMessage("priceCurrency must be a string")
+    .customSanitizer(v => v.toUpperCase())
+    .isIn(["USD", "INR"]).withMessage("priceCurrency must be USD or INR"),
+  // Images optional on update; if provided ensure array of files present
+  body("images").custom((_, { req }) => {
+    if (req.files && req.files.length === 0) {
+      throw new Error("If images key is present it must include at least one file");
+    }
+    return true;
+  }),
+  handleValidationErrors,
+];
+
+module.exports = { createProductValidators, updateProductValidators };

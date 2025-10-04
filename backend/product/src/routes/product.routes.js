@@ -5,6 +5,7 @@ const router = express.Router();
 const multer = require("multer");
 const {
   createProductValidators,
+  updateProductValidators,
 } = require("../validators/validation.middleware");
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -26,6 +27,7 @@ router.patch(
   "/:id",
   createAuthMiddleware(["seller"]),
   upload.array("images", 5),
+  updateProductValidators,
   productController.updateProduct
 );
 
