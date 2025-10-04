@@ -38,7 +38,9 @@ const registerUserValidations = [
       return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
     })
     .matches(/^[A-Z][a-zA-Z]*$/)
-    .withMessage("First name must start with a capital letter and contain only letters"),
+    .withMessage(
+      "First name must start with a capital letter and contain only letters"
+    ),
   body("fullName.lastName")
     .isString()
     .withMessage("Last name must be a string")
@@ -51,7 +53,9 @@ const registerUserValidations = [
       return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
     })
     .matches(/^[A-Z][a-zA-Z]*$/)
-    .withMessage("Last name must start with a capital letter and contain only letters"),
+    .withMessage(
+      "Last name must start with a capital letter and contain only letters"
+    ),
   body("role")
     .optional()
     .isIn(["user", "seller"])
