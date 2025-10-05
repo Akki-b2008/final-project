@@ -14,8 +14,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 router.post(
   "/",
   createAuthMiddleware(["seller"]),
-  upload.array("images", 5),
   createProductValidators,
+  upload.array("images", 5),
   productController.createProducts
 );
 
@@ -25,9 +25,9 @@ router.get("/", productController.getProducts);
 //updateProduct PATCH /api/products/:id
 router.patch(
   "/:id",
+  updateProductValidators,
   createAuthMiddleware(["seller"]),
   upload.array("images", 5),
-  updateProductValidators,
   productController.updateProduct
 );
 

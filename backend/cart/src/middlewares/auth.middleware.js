@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const redis = require("../db/redis");
 
-const createAuthMiddleware = (role = ["seller"]) => {
+const createAuthMiddleware = (role = ["user"]) => {
   return async function createAuthMiddleware(req, res, next) {
     const token =
       req.cookies?.token || req.headers?.authorization?.split(" ")[1];

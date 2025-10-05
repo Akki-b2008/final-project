@@ -2,16 +2,16 @@ const imageKit = require("imagekit");
 const { v4: uuidv4 } = require("uuid");
 
 const imagekit = new imageKit({
-  publicKey: process.env.PUBLIC_KEY,
-  privateKey: process.env.PRIVATE_KEY,
-  urlEndpoint: process.env.URL_ENDPOINT,
+  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
 });
 
 async function uploadImage(buffer) {
   const response = await imagekit.upload({
     file: buffer,
     fileName: uuidv4(),
-    folder : '/ecommerce/products'
+    folder: "/ecommerce/products",
   });
 
   console.log(response);
