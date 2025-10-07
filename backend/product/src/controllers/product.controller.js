@@ -4,7 +4,13 @@ const uploadImage = require("../services/imageKit.service");
 
 const createProducts = async (req, res) => {
   try {
-    const { title, description, priceAmount, priceCurrency = "INR" } = req.body;
+    const {
+      title,
+      description,
+      priceAmount,
+      priceCurrency = "INR",
+      stock,
+    } = req.body;
     const seller = req.user.id;
 
     const price = {
@@ -22,16 +28,17 @@ const createProducts = async (req, res) => {
       price,
       seller,
       img: images,
+      stock,
     });
 
     return res.status(201).json({
       message: "Product created successfully.",
       data: product,
     });
-  } catch (error) {
-    return res.status(500).json({
+  } catch (err) {
+    res.status(500).json({
       message: "Internal server error",
-      error: error.message || error,
+      error: err.message,
     });
   }
 };
@@ -115,9 +122,9 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    const allowedUpdates = ["title", "description", "price"];
+    const allowedUpdates = ["title", "description", "price", "stock"];
 
-    for (const key of Object.keys(req.body)) {
+    for (const key of Object.keys(req.body || {})) {
       if (allowedUpdates.includes(key)) {
         if (key === "price" && typeof req.body.price === "object") {
           if (req.body.price.amount !== undefined) {
@@ -139,10 +146,10 @@ const updateProduct = async (req, res) => {
       message: "Product updated successfully",
       product,
     });
-  } catch (error) {
-    return res.status(500).json(console.log(error), {
+  } catch (err) {
+    res.status(500).json({
       message: "Internal server error",
-      error: error.message || error,
+      error: err.message,
     });
   }
 };

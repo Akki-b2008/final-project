@@ -32,6 +32,12 @@ const createProductValidators = [
     .customSanitizer((value) => value.toUpperCase())
     .isIn(["USD", "INR"])
     .withMessage("priceCurrency must be USD or INR"),
+  // Optional initial stock for product creation
+  body('stock')
+    .optional()
+    .isInt({ min: 0 })
+    .withMessage('stock must be an integer >= 0')
+    .toInt(),
   body("images").custom((_, { req }) => {
     if (!req.files || req.files.length === 0) {
       throw new Error("At least one product image is required");
@@ -65,6 +71,12 @@ const updateProductValidators = [
     .customSanitizer(v => v.toUpperCase())
     .isIn(["USD", "INR"]).withMessage("price.currency must be USD or INR"),
   // Also support flat style fields if controller later adds mapping
+  // Allow updating stock manually (e.g. corrections). Must be int >= 0.
+  body('stock')
+    .optional()
+    .isInt({ min: 0 })
+    .withMessage('stock must be an integer >= 0')
+    .toInt(),
   body("priceAmount")
     .optional()
     .isFloat({ gt: 0 }).withMessage("priceAmount must be a number > 0"),

@@ -14,8 +14,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 router.post(
   "/",
   createAuthMiddleware(["seller"]),
-  createProductValidators,
   upload.array("images", 5),
+  createProductValidators,
   productController.createProducts
 );
 
