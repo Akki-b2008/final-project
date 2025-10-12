@@ -1,6 +1,7 @@
 const paymentModel = require("../models/payment.model");
 const axios = require("axios");
 const razorpay = require("../services/razorpay.service");
+const { publishToQueue } = require("../broker/broker.js");
 
 const createPayment = async (req, res) => {
   const token = req.cookies?.token || req.headers?.authorization?.split(" ")[1];
@@ -30,15 +31,20 @@ const createPayment = async (req, res) => {
       },
     });
 
-    console.log(payment);
-    
+    await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_INITIATED", {
+      email: req.user.email,
+      orderId: orderId,
+      amount: price.amount / 100,
+      currency: price.currency,
+      username: req.user.username,
+    });
 
     return res.status(201).json({
       message: "Payment initiated",
       payment,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(500).json(console.log("eror", err), {
       message: "Internal server error",
       error: err.message || err,
     });
@@ -59,10 +65,10 @@ const verifyPayment = async (req, res) => {
       {
         order_id: razorpayOrderId,
         payment_id: paymentId,
-      }[(signature, secret)]
+      },
+      signature,
+      secret
     );
-
-    console.log(isValid);
 
     if (!isValid) {
       return res.status(400).json({
@@ -87,15 +93,30 @@ const verifyPayment = async (req, res) => {
 
     await payment.save();
 
+    await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_COMPLETED", {
+      email: req.user.email,
+      orderId: payment.order,
+      paymentId: payment.paymentId,
+      amount: payment.price.amount ,
+      currency: payment.price.currency,
+      fullName: req.user.fullName,
+    });
+
     return res.status(200).json({
       message: "Payment verified successfully",
       payment,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Internal server error",
-      error: error.message || error,
-    });
+    await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_FAILED", {
+      email: req.user.email,
+      paymentId: paymentId,
+      orderId: razorpayOrderId,
+      fullName: req.user.fullName,
+    }),
+      res.status(500).json({
+        message: "Internal server error",
+        error: error.message || error,
+      });
   }
 };
 

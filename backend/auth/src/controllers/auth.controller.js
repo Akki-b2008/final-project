@@ -2,6 +2,7 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const redis = require("../db/redis");
+const { publishToQueue } = require("../broker/broker");
 
 const register = async (req, res) => {
   try {
@@ -31,6 +32,13 @@ const register = async (req, res) => {
       password: hash,
       fullName: { firstName, lastName },
       role: role || "user", // default role is 'user'
+    });
+
+    await publishToQueue("AUTH_NOTIFICATION.USER_CREATED", {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      fullName: user.fullName,
     });
 
     const token = jwt.sign(
