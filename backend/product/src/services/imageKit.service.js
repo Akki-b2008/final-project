@@ -13,8 +13,7 @@ async function uploadImage(buffer) {
     fileName: uuidv4(),
     folder: "/ecommerce/products",
   });
-
-  console.log(response);
+  
   return {
     url: response.url,
     thumbnail: response.thumbnailUrl,

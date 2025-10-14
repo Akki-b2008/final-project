@@ -26,9 +26,9 @@ async function publishToQueue(queueName, data = {}) {
   });
 }
 
-async function subscribeToQueue(queueName, callback) {
+async function subscribeTOQueue(queueName, callback) {
   if (!channel || !connection) await connect();
-  
+
   await channel.assertQueue(queueName, {
     durable: true,
   });
@@ -47,5 +47,5 @@ module.exports = {
   connection,
   connect,
   publishToQueue,
-  subscribeToQueue,
+  subscribeTOQueue,
 };

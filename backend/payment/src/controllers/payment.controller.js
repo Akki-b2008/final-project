@@ -21,6 +21,7 @@ const createPayment = async (req, res) => {
     const price = orderResponse.data.order.totalPrice;
 
     const order = await razorpay.orders.create(price);
+
     const payment = await paymentModel.create({
       order: orderId,
       razorpayOrderId: order.id,
@@ -94,10 +95,11 @@ const verifyPayment = async (req, res) => {
     await payment.save();
 
     await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_COMPLETED", {
+      username: req.user.username,
       email: req.user.email,
       orderId: payment.order,
       paymentId: payment.paymentId,
-      amount: payment.price.amount ,
+      amount: price.amount / 100,
       currency: payment.price.currency,
       fullName: req.user.fullName,
     });
@@ -108,6 +110,7 @@ const verifyPayment = async (req, res) => {
     });
   } catch (error) {
     await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_FAILED", {
+      username: req.user.username,
       email: req.user.email,
       paymentId: paymentId,
       orderId: razorpayOrderId,

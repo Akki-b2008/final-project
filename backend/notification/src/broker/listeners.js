@@ -3,42 +3,35 @@ const { subscribeToQueue } = require("./broker");
 
 module.exports = function () {
   subscribeToQueue("AUTH_NOTIFICATION.USER_CREATED", async (data) => {
-    // Build safe, readable values for the template
-    const firstName = (data && data.fullName && data.fullName.firstName) || "";
-    const lastName = (data && data.fullName && data.fullName.lastName) || "";
-    const fullName =
-      (firstName + (lastName ? " " + lastName : "")).trim() || "there";
-    const emailAddress = (data && data.email) || "";
-
-    // Branded template settings (can be provided in event data)
-    const BRAND_COLOR = (data && data.brandColor) || "#1f2937"; // default dark gray
-    const LOGO_URL = (data && data.logoUrl) || null;
-
-    const buildSimpleEmail = require("../templates/simpleEmail");
-
-    const emailHTMLTemplate = buildSimpleEmail({
-      title: "Welcome",
-      preheader: "Welcome to our service",
-      fullName,
-      body: "We're excited to have you with us.",
-      footer: `© ${new Date().getFullYear()} Your Brand. All rights reserved.`,
-      brandColor: BRAND_COLOR,
-      logoUrl: LOGO_URL,
-      emailAddress,
-    });
-
-    const plainText = `Welcome ${fullName}!
-
-Thank you for registering with our service.
-
-Email: ${emailAddress}
-
-— The Team`;
+    const emailHTMLTemplate = `
+        <h1>Welcome to Our Service!</h1>
+        <p>Dear ${
+          data.fullName.firstName + " " + (data.fullName.lastName || "")
+        },</p>
+        <p>Thank you for registering with us. We're excited to have you on board!</p>
+        <p>Best regards,<br/>The Team</p>
+        `;
 
     await sendEmail(
-      emailAddress,
+      data.email,
       "Welcome to Our Service",
-      plainText,
+      "Thank you for registering with us!",
+      emailHTMLTemplate
+    );
+  });
+
+  subscribeToQueue("PAYMENT_NOTIFICATION.PAYMENT_INITIATED", async (data) => {
+    const emailHTMLTemplate = `
+        <h1>Payment Initiated</h1>
+        <p>Dear ${data.username},</p>
+        <p>Your payment of ${data.currency} ${data.amount} for the order ID: ${data.orderId} has been initiated.</p>
+        <p>We will notify you once the payment is completed.</p>
+        <p>Best regards,<br/>The Team</p>
+        `;
+    await sendEmail(
+      data.email,
+      "Payment Initiated",
+      "Your payment is being processed",
       emailHTMLTemplate
     );
   });
@@ -71,6 +64,24 @@ Email: ${emailAddress}
       data.email,
       "Payment Failed",
       "Your payment could not be processed",
+      emailHTMLTemplate
+    );
+  });
+
+  subscribeToQueue("PRODUCT_NOTIFICATION.PRODUCT_CREATED", async (data) => {
+    const emailHTMLTemplate = `
+        <h1>Your Product Is Live!</h1>
+        <p>Hi ${data.username},</p>
+        <p>Your new product has been published successfully and is now visible to shoppers.</p>
+        <p>Product id: ${data.productId}</p>
+        <p>You can review or update it anytime from your seller dashboard.</p>
+        <p>Best regards,<br/>The Team</p>
+        `;
+
+    await sendEmail(
+      data.email,
+      "Your product is live",
+      "Your new product has been published successfully",
       emailHTMLTemplate
     );
   });
