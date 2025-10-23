@@ -28,16 +28,19 @@ async function publishToQueue(queueName, data = {}) {
 
 async function subscribeToQueue(queueName, callback) {
   if (!channel || !connection) await connect();
-
-  await channel.assertQueue(queueName, {
-    durable: true,
-  });
+  await channel.assertQueue(queueName, { durable: true });
 
   channel.consume(queueName, async (msg) => {
-    if (msg !== null) {
-      let data = JSON.parse(msg.content.toString());
+    if (!msg) return;
+
+    let data;
+    try {
+      data = JSON.parse(msg.content.toString());
       await callback(data);
       channel.ack(msg);
+    } catch (err) {
+      console.error(`Error processing message from ${queueName}:`, err.message);
+      channel.nack(msg, false, false);
     }
   });
 }

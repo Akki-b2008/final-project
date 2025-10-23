@@ -32,12 +32,15 @@ const createProducts = async (req, res) => {
       stock,
     });
 
-    await publishToQueue("PRODUCT_NOTIFICATION.PRODUCT_CREATED", {
-      username: req.user.username,
-      email: req.user.email,
-      productId: product._id,
-      sellerId: seller,
-    });
+    await Promise.all([
+      publishToQueue("PRODUCT_NOTIFICATION.PRODUCT_CREATED", {
+        username: req.user.username,
+        email: req.user.email,
+        productId: product._id,
+        sellerId: seller,
+      }),
+      publishToQueue("PRODUCT_SELLER_DASHBOARD.PRODUCT_CREATED", product),
+    ]);
 
     return res.status(201).json({
       message: "Product created successfully.",

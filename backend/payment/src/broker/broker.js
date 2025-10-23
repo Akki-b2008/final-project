@@ -24,7 +24,6 @@ async function publishToQueue(queueName, data = {}) {
   channel.sendToQueue(queueName, Buffer.from(JSON.stringify(data)), {
     persistent: true,
   });
-  console.log("Message sent to queue:", queueName, data);
 }
 
 async function subscribeTOQueue(queueName, callback) {
