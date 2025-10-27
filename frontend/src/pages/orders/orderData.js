@@ -1,12 +1,18 @@
 export const ORDER_HISTORY = [
   {
     id: "DB87CA92C",
-    status: "confirmed",
+    status: "completed",
     placedAt: "2025-10-24T09:45:00.000Z",
-    deliveryWindow: "Arrives Oct 30 - Nov 2",
+    updatedAt: "2025-10-24T09:45:00.000Z",
+    statusNote: "Paid Oct 24 · prepping dispatch",
     total: 5000,
     currency: "INR",
-    payment: { method: "Visa", last4: "4321" },
+    payment: {
+      method: "Visa",
+      last4: "4321",
+      status: "paid",
+      reference: "PAY-873216",
+    },
     shipping: {
       name: "Aarav Mehta",
       street: "49 Dushyant Nagar",
@@ -14,6 +20,13 @@ export const ORDER_HISTORY = [
       state: "Madhya Pradesh",
       postal: "474011",
       country: "India",
+    },
+    flow: {
+      cartCreatedAt: "2025-10-24T09:20:00.000Z",
+      addressConfirmedAt: "2025-10-24T09:35:00.000Z",
+      paymentStatus: "paid",
+      paymentCompletedAt: "2025-10-24T09:45:00.000Z",
+      paymentReference: "PAY-873216",
     },
     items: [
       {
@@ -37,32 +50,21 @@ export const ORDER_HISTORY = [
           "https://images.unsplash.com/photo-1511556670410-f0b3ff09c256?auto=format&fit=crop&w=720&q=80",
       },
     ],
-    timeline: [
-      {
-        id: "placed",
-        label: "Confirmed",
-        timestamp: "2025-10-24T09:45:00.000Z",
-      },
-      {
-        id: "packed",
-        label: "Packed at Luxe Studio",
-        timestamp: "2025-10-24T15:15:00.000Z",
-      },
-      {
-        id: "in-transit",
-        label: "Handed to carrier",
-        timestamp: "2025-10-25T08:30:00.000Z",
-      },
-    ],
   },
   {
     id: "116D20C8",
-    status: "confirmed",
+    status: "completed",
     placedAt: "2025-10-24T06:10:00.000Z",
-    deliveryWindow: "Arrives Oct 28 - Oct 30",
+    updatedAt: "2025-10-24T13:05:00.000Z",
+    statusNote: "Paid Oct 24 · tailoring in progress",
     total: 7500,
     currency: "INR",
-    payment: { method: "UPI", last4: "aarav@oksbi" },
+    payment: {
+      method: "UPI",
+      last4: "aarav@oksbi",
+      status: "paid",
+      reference: "UPI-562430",
+    },
     shipping: {
       name: "Rhea Kapoor",
       street: "16 Palm Court",
@@ -70,6 +72,13 @@ export const ORDER_HISTORY = [
       state: "Karnataka",
       postal: "560102",
       country: "India",
+    },
+    flow: {
+      cartCreatedAt: "2025-10-24T05:50:00.000Z",
+      addressConfirmedAt: "2025-10-24T06:05:00.000Z",
+      paymentStatus: "paid",
+      paymentCompletedAt: "2025-10-24T06:10:00.000Z",
+      paymentReference: "UPI-562430",
     },
     items: [
       {
@@ -93,32 +102,21 @@ export const ORDER_HISTORY = [
           "https://images.unsplash.com/photo-1559561853-08451582d788?auto=format&fit=crop&w=720&q=80",
       },
     ],
-    timeline: [
-      {
-        id: "placed",
-        label: "Confirmed",
-        timestamp: "2025-10-24T06:10:00.000Z",
-      },
-      {
-        id: "atelier",
-        label: "Tailor finishing",
-        timestamp: "2025-10-24T13:05:00.000Z",
-      },
-      {
-        id: "dispatch",
-        label: "Ready for dispatch",
-        timestamp: null,
-      },
-    ],
   },
   {
     id: "A55C10AF",
-    status: "in-transit",
+    status: "pending",
     placedAt: "2025-10-23T20:15:00.000Z",
-    deliveryWindow: "Out for delivery Oct 27",
+    updatedAt: "2025-10-24T08:20:00.000Z",
+    statusNote: "Awaiting payment confirmation",
     total: 4200,
     currency: "INR",
-    payment: { method: "Mastercard", last4: "1984" },
+    payment: {
+      method: "Mastercard",
+      last4: "1984",
+      status: "pending",
+      reference: null,
+    },
     shipping: {
       name: "Dev Sharma",
       street: "88 Sea Wind Residency",
@@ -126,6 +124,13 @@ export const ORDER_HISTORY = [
       state: "Maharashtra",
       postal: "400076",
       country: "India",
+    },
+    flow: {
+      cartCreatedAt: "2025-10-23T19:52:00.000Z",
+      addressConfirmedAt: "2025-10-23T20:05:00.000Z",
+      paymentStatus: "pending",
+      paymentCompletedAt: null,
+      paymentReference: null,
     },
     items: [
       {
@@ -139,37 +144,21 @@ export const ORDER_HISTORY = [
           "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=720&q=80",
       },
     ],
-    timeline: [
-      {
-        id: "placed",
-        label: "Confirmed",
-        timestamp: "2025-10-23T20:15:00.000Z",
-      },
-      {
-        id: "packed",
-        label: "Packed",
-        timestamp: "2025-10-23T23:30:00.000Z",
-      },
-      {
-        id: "shipped",
-        label: "Departed Bengaluru hub",
-        timestamp: "2025-10-24T08:20:00.000Z",
-      },
-      {
-        id: "last-mile",
-        label: "Out for delivery",
-        timestamp: "2025-10-27T06:10:00.000Z",
-      },
-    ],
   },
   {
     id: "8B5F23E3",
     status: "pending",
     placedAt: "2025-10-23T18:51:00.000Z",
-    deliveryWindow: "Processing",
+    updatedAt: "2025-10-23T18:51:00.000Z",
+    statusNote: "Payment link sent Oct 23",
     total: 4000,
     currency: "INR",
-    payment: { method: "Amex", last4: "0092" },
+    payment: {
+      method: "Amex",
+      last4: "0092",
+      status: "pending",
+      reference: null,
+    },
     shipping: {
       name: "Ishita Rao",
       street: "12 Vista Greens",
@@ -177,6 +166,13 @@ export const ORDER_HISTORY = [
       state: "Telangana",
       postal: "500081",
       country: "India",
+    },
+    flow: {
+      cartCreatedAt: "2025-10-23T18:20:00.000Z",
+      addressConfirmedAt: "2025-10-23T18:44:00.000Z",
+      paymentStatus: "pending",
+      paymentCompletedAt: null,
+      paymentReference: null,
     },
     items: [
       {
@@ -200,22 +196,21 @@ export const ORDER_HISTORY = [
           "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=720&q=80",
       },
     ],
-    timeline: [
-      {
-        id: "placed",
-        label: "Awaiting confirmation",
-        timestamp: "2025-10-23T18:51:00.000Z",
-      },
-    ],
   },
   {
     id: "E4F3E501",
     status: "cancelled",
     placedAt: "2025-10-22T11:32:00.000Z",
-    deliveryWindow: "Cancelled Oct 24",
+    updatedAt: "2025-10-24T07:20:00.000Z",
+    statusNote: "Cancelled Oct 24 · refund initiating",
     total: 1000,
     currency: "INR",
-    payment: { method: "UPI", last4: "isha@oksbi" },
+    payment: {
+      method: "UPI",
+      last4: "isha@oksbi",
+      status: "refunded",
+      reference: "REF-992014",
+    },
     shipping: {
       name: "Isha Sen",
       street: "4 Lakefront Drive",
@@ -223,6 +218,13 @@ export const ORDER_HISTORY = [
       state: "West Bengal",
       postal: "700091",
       country: "India",
+    },
+    flow: {
+      cartCreatedAt: "2025-10-22T10:58:00.000Z",
+      addressConfirmedAt: "2025-10-22T11:18:00.000Z",
+      paymentStatus: "refunded",
+      paymentCompletedAt: "2025-10-24T07:20:00.000Z",
+      paymentReference: "REF-992014",
     },
     items: [
       {
@@ -236,35 +238,19 @@ export const ORDER_HISTORY = [
           "https://images.unsplash.com/photo-1518895949257-7621c3c786d4?auto=format&fit=crop&w=720&q=80",
       },
     ],
-    timeline: [
-      {
-        id: "placed",
-        label: "Confirmed",
-        timestamp: "2025-10-22T11:32:00.000Z",
-      },
-      {
-        id: "cancelled",
-        label: "Cancelled by client",
-        timestamp: "2025-10-24T07:20:00.000Z",
-      },
-    ],
   },
 ];
 
 export const STATUS_CONFIG = {
   pending: { label: "Pending", tone: "warning" },
-  confirmed: { label: "Confirmed", tone: "info" },
-  "in-transit": { label: "In transit", tone: "accent" },
-  delivered: { label: "Delivered", tone: "success" },
+  completed: { label: "Completed", tone: "success" },
   cancelled: { label: "Cancelled", tone: "muted" },
 };
 
 export const STATUS_FILTERS = [
   { id: "all", label: "All" },
   { id: "pending", label: "Pending" },
-  { id: "confirmed", label: "Confirmed" },
-  { id: "in-transit", label: "In transit" },
-  { id: "delivered", label: "Delivered" },
+  { id: "completed", label: "Completed" },
   { id: "cancelled", label: "Cancelled" },
 ];
 

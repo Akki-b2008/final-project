@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   FiArrowLeft,
   FiArrowRight,
-  FiClock,
   FiDownload,
   FiMapPin,
   FiPackage,
@@ -46,6 +45,17 @@ const formatDateTime = (value) => {
   }).format(new Date(value));
 };
 
+const formatStatusLabel = (value) => {
+  if (!value) {
+    return "";
+  }
+
+  return value
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+};
+
 const OrderDetails = () => {
   const { orderId = "" } = useParams();
   const navigate = useNavigate();
@@ -61,6 +71,79 @@ const OrderDetails = () => {
 
     return order.items.reduce((sum, item) => sum + item.quantity, 0);
   }, [order]);
+
+  const paymentSummary = useMemo(() => {
+    if (!order) {
+      return { statusLabel: "", description: "", reference: null };
+    }
+
+    const flow = order.flow ?? {};
+    const status = flow.paymentStatus ?? order.payment?.status ?? "";
+    const paymentCompletedAt = flow.paymentCompletedAt;
+    const reference = flow.paymentReference ?? order.payment?.reference ?? null;
+
+    if (status === "paid") {
+      return {
+        statusLabel: "Paid",
+        description: `${formatDateTime(paymentCompletedAt)} · ${order.payment.method}`,
+        reference,
+      };
+    }
+
+    if (status === "pending") {
+      return {
+        statusLabel: "Pending",
+        description: "Awaiting payment",
+        reference,
+      };
+    }
+
+    if (status === "refunded") {
+      return {
+        statusLabel: "Refunded",
+        description: `${formatDateTime(paymentCompletedAt)} · ${order.payment.method}`,
+        reference,
+      };
+    }
+
+    return {
+      statusLabel: formatStatusLabel(status),
+      description: "Status update unavailable",
+      reference,
+    };
+  }, [order]);
+
+  const paymentSummaryText = useMemo(() => {
+    if (!order) {
+      return "";
+    }
+
+    const parts = [
+      order.payment?.method,
+      order.payment?.last4,
+      formatStatusLabel(order.payment?.status),
+    ].filter(Boolean);
+
+    return parts.join(" · ");
+  }, [order]);
+
+  const paymentTone = useMemo(() => {
+    const label = (paymentSummary.statusLabel ?? "").toLowerCase();
+
+    if (label === "paid") {
+      return "success";
+    }
+
+    if (label === "pending") {
+      return "warning";
+    }
+
+    if (label === "refunded") {
+      return "muted";
+    }
+
+    return "neutral";
+  }, [paymentSummary]);
 
   if (!order) {
     return (
@@ -109,13 +192,11 @@ const OrderDetails = () => {
           </div>
           <div>
             <span>Payment</span>
-            <strong>
-              {order.payment.method} · {order.payment.last4}
-            </strong>
+            <strong>{paymentSummaryText}</strong>
           </div>
           <div>
-            <span>Delivery window</span>
-            <strong>{order.deliveryWindow}</strong>
+            <span>Status detail</span>
+            <strong>{order.statusNote}</strong>
           </div>
         </div>
         <div className="order-details__actions">
@@ -133,27 +214,39 @@ const OrderDetails = () => {
       </header>
 
       <div className="order-details__body">
-        <section className="order-panel order-panel--timeline">
+        <section className="order-panel order-panel--checkout">
           <header>
-            <FiClock aria-hidden="true" />
+            <FiPackage aria-hidden="true" />
             <div>
-              <h2>Journey timeline</h2>
-              <p>Follow each milestone from confirmation to doorstep.</p>
+              <h2>Checkout summary</h2>
+              <p>Cart creation, address selection, and payment status in one place.</p>
             </div>
           </header>
-          <ol>
-            {order.timeline.map((step) => (
-              <li key={step.id}>
-                <span className="order-step-icon">
-                  <FiPackage aria-hidden="true" />
+          <dl className="order-flow">
+            <div>
+              <dt>Cart created</dt>
+              <dd>{formatDateTime(order.flow?.cartCreatedAt)}</dd>
+            </div>
+            <div>
+              <dt>Address selected</dt>
+              <dd>{formatDateTime(order.flow?.addressConfirmedAt)}</dd>
+            </div>
+            <div>
+              <dt>Payment</dt>
+              <dd>
+                <span className={`order-flow__badge tone-${paymentTone}`}>
+                  {paymentSummary.statusLabel || "Unavailable"}
                 </span>
-                <div>
-                  <strong>{step.label}</strong>
-                  <time>{formatDateTime(step.timestamp)}</time>
-                </div>
-              </li>
-            ))}
-          </ol>
+                <span>{paymentSummary.description}</span>
+              </dd>
+            </div>
+            {paymentSummary.reference ? (
+              <div>
+                <dt>Payment reference</dt>
+                <dd>{paymentSummary.reference}</dd>
+              </div>
+            ) : null}
+          </dl>
         </section>
 
         <section className="order-panel order-panel--info">
@@ -174,7 +267,7 @@ const OrderDetails = () => {
           </address>
           <div className="order-panel__meta">
             <span>Last update</span>
-            <strong>{formatDateTime(order.timeline.at(-1)?.timestamp)}</strong>
+            <strong>{formatDateTime(order.updatedAt)}</strong>
           </div>
         </section>
 

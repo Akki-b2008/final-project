@@ -48,18 +48,17 @@ const Orders = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const metrics = useMemo(() => {
-    const totalSpend = ORDER_HISTORY.reduce((sum, order) => sum + order.total, 0);
-    const openOrders = ORDER_HISTORY.filter((order) =>
-      ["pending", "confirmed", "in-transit"].includes(order.status)
-    ).length;
-    const delivered = ORDER_HISTORY.filter((order) => order.status === "delivered").length;
-    const firstUpcoming = ORDER_HISTORY.find((order) => order.status !== "delivered");
+    const completedOrders = ORDER_HISTORY.filter((order) => order.status === "completed");
+    const totalSpend = completedOrders.reduce((sum, order) => sum + order.total, 0);
+    const openOrders = ORDER_HISTORY.filter((order) => order.status === "pending").length;
+    const nextUpdate =
+      ORDER_HISTORY.find((order) => order.status === "pending")?.statusNote ??
+      "All orders completed";
 
     return {
       totalSpend: formatCurrency(totalSpend),
       openOrders,
-      delivered,
-      nextWindow: firstUpcoming?.deliveryWindow ?? "All journeys completed",
+      nextUpdate,
     };
   }, []);
 
@@ -116,15 +115,15 @@ const Orders = () => {
           <article className="hero-stat">
             <FiClock aria-hidden="true" />
             <div>
-              <span>Active journeys</span>
+              <span>Pending orders</span>
               <strong>{metrics.openOrders}</strong>
             </div>
           </article>
           <article className="hero-stat">
             <FiCalendar aria-hidden="true" />
             <div>
-              <span>Next window</span>
-              <strong>{metrics.nextWindow}</strong>
+              <span>Next action</span>
+              <strong>{metrics.nextUpdate}</strong>
             </div>
           </article>
         </aside>
@@ -158,7 +157,7 @@ const Orders = () => {
       </div>
 
       <p className="orders-meta" role="status">
-        Showing {filteredOrders.length} of {ORDER_HISTORY.length} journeys
+        Showing {filteredOrders.length} of {ORDER_HISTORY.length} orders
       </p>
 
       <div className="orders-grid">
@@ -184,7 +183,7 @@ const Orders = () => {
                     Placed {formatDateTime(order.placedAt)} • {itemCount} {itemCount === 1 ? "item" : "items"}
                   </p>
                 </div>
-                <span className="orders-card__window">{order.deliveryWindow}</span>
+                <span className="orders-card__window">{order.statusNote}</span>
               </header>
 
               <div className="orders-card__media">
