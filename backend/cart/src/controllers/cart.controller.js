@@ -1,4 +1,5 @@
 const cartModel = require("../models/cart.model");
+const axios = require("axios");
 
 const getCartItems = async (req, res) => {
   const user = req.user;
@@ -35,6 +36,17 @@ const addItemToCart = async (req, res) => {
       cart = new cartModel({
         user: user.id,
         items: [],
+      });
+    }
+
+    const productResponse = await axios.get(
+      `http://localhost:3001/api/products/${productId}`
+    );
+    const product = productResponse.data.product;
+
+    if (product.stock < qty) {
+      return res.status(404).json({
+        message: "Insufficient product quantity.",
       });
     }
 
@@ -90,6 +102,17 @@ const updateCartItem = async (req, res) => {
       });
     }
 
+    const productResponse = await axios.get(
+      `http://localhost:3001/api/products/${productId}`
+    );
+    const product = productResponse.data.product;
+
+    if (product.stock < qty) {
+      return res.status(404).json({
+        message: `Only ${product.stock} units available in stock.`,
+      });
+    }
+
     cart.items[existingItemIndex].quantity = Number(qty);
 
     await cart.save();
@@ -134,17 +157,13 @@ const deleteCartItem = async (req, res) => {
 
     cart.items.splice(existingItemIndex, 1);
 
-    // cart.items = cart.items.filter(
-    //   (item) => item.productId.toString() !== productId
-    // );
-
     await cart.save();
 
     return res.status(200).json({
       message: "Item removed successfully",
       cart,
     });
-  }catch (err) {
+  } catch (err) {
     res.status(500).json({
       message: "Internal server error",
       error: err.message,
@@ -155,22 +174,29 @@ const deleteCartItem = async (req, res) => {
 const deleteCart = async (req, res) => {
   const user = req.user;
 
-  const cart = await cartModel.findOneAndUpdate(
-    { user: user.id },
-    { $set: { items: [] } },
-    { new: true, runValidators: true }
-  );
+  try {
+    const cart = await cartModel.findOneAndUpdate(
+      { user: user.id },
+      { $set: { items: [] } },
+      { new: true, runValidators: true }
+    );
 
-  if (!cart) {
-    return res.status(404).json({
-      message: "Cart not found",
+    if (!cart) {
+      return res.status(404).json({
+        message: "Cart not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Cart cleared successfully",
+      cart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      error: err.message,
     });
   }
-
-  return res.status(200).json({
-    message: "Cart cleared successfully",
-    cart,
-  });
 };
 
 module.exports = {

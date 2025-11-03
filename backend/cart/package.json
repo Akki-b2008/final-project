@@ -5,25 +5,25 @@
   "scripts": {
     "test": "jest --runInBand",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "npx nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.13.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-  "express-validator": "^7.0.1",
+    "express-validator": "^7.0.1",
     "ioredis": "^5.8.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10",
     "jest": "^29.7.0",
-    "supertest": "^6.3.3",
-    "mongodb-memory-server": "^8.12.2"
+    "mongodb-memory-server": "^8.12.2",
+    "supertest": "^6.3.3"
   }
 }

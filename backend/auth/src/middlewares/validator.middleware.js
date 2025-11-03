@@ -12,11 +12,6 @@ const respondWithValidationErrors = (req, res, next) => {
 };
 
 const registerUserValidations = [
-  body("username")
-    .isString()
-    .withMessage("Username must be a string")
-    .isLength({ min: 3 })
-    .withMessage("Username must be at least 3 characters long"),
   body("email").isEmail().withMessage("Invalid email address"),
   body("password")
     .isLength({ min: 6 })
@@ -24,7 +19,7 @@ const registerUserValidations = [
     .bail()
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/)
     .withMessage(
-      "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
+      "Password must contain at least one uppercase - lowercase letter, digit, special character"
     ),
   body("fullName.firstName")
     .isString()
@@ -65,10 +60,6 @@ const registerUserValidations = [
 
 const loginUserValidations = [
   body("email").optional().isEmail().withMessage("Invalid email address"),
-  body("username")
-    .optional()
-    .isString()
-    .withMessage("Username must be a string"),
   body("password")
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),

@@ -22,7 +22,7 @@ const validateAddItemToCart = [
 ];
 
 const validateUpdateCartItem = [
-  param("productId")
+  param("id")
     .isString()
     .withMessage("Product ID must be a string")
     .custom((value) => mongoose.Types.ObjectId.isValid(value))

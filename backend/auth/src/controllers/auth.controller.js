@@ -7,7 +7,6 @@ const { publishToQueue } = require("../broker/broker");
 const register = async (req, res) => {
   try {
     const {
-      username,
       email,
       password,
       fullName: { firstName, lastName },
@@ -15,19 +14,16 @@ const register = async (req, res) => {
     } = req.body;
 
     const isUserAlreadyExists = await userModel.findOne({
-      $or: [{ username }, { email }],
+      email: email,
     });
 
     if (isUserAlreadyExists) {
-      return res
-        .status(409)
-        .json({ message: "Username or email already exists" });
+      return res.status(409).json({ message: "Email already exists" });
     }
 
     const hash = await bcrypt.hash(password, 10);
 
     const user = await userModel.create({
-      username,
       email,
       password: hash,
       fullName: { firstName, lastName },
@@ -37,7 +33,6 @@ const register = async (req, res) => {
     await Promise.all([
       publishToQueue("AUTH_NOTIFICATION.USER_CREATED", {
         id: user._id,
-        username: user.username,
         email: user.email,
         fullName: user.fullName,
       }),
@@ -47,7 +42,6 @@ const register = async (req, res) => {
     const token = jwt.sign(
       {
         id: user._id,
-        username: user.username,
         email: user.email,
         role: user.role,
       },
@@ -65,7 +59,6 @@ const register = async (req, res) => {
       message: "User registered successfully",
       user: {
         id: user._id,
-        username: user.username,
         email: user.email,
         fullName: user.fullName,
         role: user.role,
@@ -82,11 +75,11 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     const user = await userModel
       .findOne({
-        $or: [{ username }, { email }],
+        email: email,
       })
       .select("+password");
 
@@ -107,7 +100,6 @@ const login = async (req, res) => {
     const token = jwt.sign(
       {
         id: user._id,
-        username: user.username,
         email: user.email,
         role: user.role,
       },
@@ -125,7 +117,6 @@ const login = async (req, res) => {
       message: "User loggedIn successfully",
       user: {
         id: user._id,
-        username: user.username,
         email: user.email,
         fullName: user.fullName,
         role: user.role,
