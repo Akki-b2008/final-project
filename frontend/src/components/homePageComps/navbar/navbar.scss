@@ -1,0 +1,54 @@
+.navbar-search-input::placeholder {
+  font-size: 18px;
+  color: #515151;
+}
+
+.link:hover {
+  color: #ff5252;
+}
+
+.MuiBadge-badge {
+  background-color: #ff5252 !important;
+}
+
+.scroll {
+  ul {
+    li {
+      text-decoration: capitalize !important;
+    }
+  }
+}
+
+.opensubmenu {
+  display: inline-block;
+}
+
+.category-menu-list {
+  li {
+    button {
+      text-transform: capitalize !important;
+    }
+  }
+}
+
+.category-tiles {
+  li {
+    .submenu {
+      visibility: hidden;
+    }
+
+    Button{
+      text-transform: capitalize !important;
+    }
+  }
+}
+
+.category-tiles {
+  li:hover {
+    .submenu {
+      visibility: inherit;
+      opacity: 1;
+      
+    }
+  }
+}

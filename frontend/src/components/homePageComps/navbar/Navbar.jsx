@@ -1,9 +1,9 @@
 import "./navbar.scss";
-import Search from "./header/search/Search";
-import Logo from "./header/logo/Logo";
+import Search from "../../homePageComps/navbar/header/search/Search";
+import Logo from "../../homePageComps/navbar/header/logo/Logo";
 import AccountSection from "./header/account&cart/AccountSection";
-import CategoryMenu from "./categories/categoryMenu/CategoryMenu";
-import CategoryTiles from "./categories/categoryTiles/CategoryTiles";
+import CategoryMenu from "../../homePageComps/navbar/categories/categoryMenu/CategoryMenu";
+import CategoryTiles from "../../homePageComps/navbar/categories/categoryTiles/CategoryTiles";
 import { useState } from "react";
 
 function Navbar() {
@@ -19,8 +19,8 @@ function Navbar() {
 
       <div className="flex items-center gap-10 w-full py-3 px-8 border-b-2 shadow-md border-gray-300">
         <CategoryMenu
-          open={isOpenCategoryMenu}
-          setOpen={setIsOpenCategoryMenu}
+          openMenu={isOpenCategoryMenu}
+          setOpenMenu={setIsOpenCategoryMenu}
         />
         <CategoryTiles />
       </div>

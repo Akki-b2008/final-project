@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
-html,
-body {
-  height: 100%;
-  width: 100%;
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-elms: "Elms Sans", sans-serif;
+  --font-roboto: "Roboto Mono", monospace;
 }
 
-body{
-  font-family: 'Inter', sans-serif;
+body {
+  font-family: var(--font-inter);
 }

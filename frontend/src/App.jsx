@@ -1,4 +1,4 @@
-import Navbar from "./components/navbar/Navbar.jsx";
+import Navbar from "../src/components/homePageComps/navbar/Navbar.jsx";
 import MainRoutes from "./mainRoutes/MainRoutes.jsx";
 
 const App = () => {
