@@ -44,7 +44,6 @@ async function getMetrics(req, res) {
       topProducts,
     });
   } catch (error) {
-    console.error("Error fetching metrics:", error);
     return res.status(500).json({
       message: "Internal Server Error",
     });
@@ -55,32 +54,33 @@ async function getOrders(req, res) {
   try {
     const seller = req.user;
 
-    const products = await productModel.find({ seller: seller.id });
-    
+    const products = await productModel
+      .find({ seller: seller.id })
+      .select("_id");
+
+    if (!products.length) {
+      return res.status(200).json([]);
+    }
+
     const productIds = products.map((p) => p._id);
 
     const orders = await orderModel
       .find({
         "items.product": { $in: productIds },
       })
-      .populate("user", "name email")
+      .populate("user", "fullName email")
       .sort({ createdAt: -1 });
-
-    console.log("orders", orders);
 
     const filteredOrders = orders
       .map((order) => {
         const filteredItems = order.items.filter((item) =>
-          productIds.includes(item.product)
+          productIds
+            .map((id) => id.toString())
+            .includes(item.product.toString())
         );
-        return {
-          ...order.toObject(),
-          items: filteredItems,
-        };
+        return { ...order.toObject(), items: filteredItems };
       })
       .filter((order) => order.items.length > 0);
-
-    console.log("filteredOrders", filteredOrders);
 
     return res.status(200).json(filteredOrders);
   } catch (error) {
@@ -99,8 +99,6 @@ async function getProducts(req, res) {
     const products = await productModel
       .find({ seller: seller.id })
       .sort({ createdAt: -1 });
-
-    console.log("products ", products);
 
     return res.status(200).json(products);
   } catch (error) {

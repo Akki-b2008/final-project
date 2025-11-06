@@ -35,6 +35,7 @@
   li {
     .submenu {
       visibility: hidden;
+      z-index: 100;
     }
 
     Button{

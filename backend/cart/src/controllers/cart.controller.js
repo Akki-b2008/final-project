@@ -24,7 +24,7 @@ const getCartItems = async (req, res) => {
   });
 };
 
-const addItemToCart = async (req, res) => {
+const addItemToCart = async (req, res) => {  
   try {
     const { productId, qty } = req.body;
 
@@ -44,11 +44,11 @@ const addItemToCart = async (req, res) => {
     );
     const product = productResponse.data.product;
 
-    if (product.stock < qty) {
-      return res.status(404).json({
-        message: "Insufficient product quantity.",
-      });
-    }
+    // if (product.stock < qty) {
+    //   return res.status(404).json({
+    //     message: "Insufficient product quantity.",
+    //   });
+    // }
 
     const existingItemIndex = cart.items.findIndex(
       (item) => item.productId.toString() === productId
@@ -67,6 +67,8 @@ const addItemToCart = async (req, res) => {
       cart,
     });
   } catch (err) {
+    console.log("err", err);
+    
     res.status(500).json({
       message: "Internal server error",
       error: err.message,

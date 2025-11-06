@@ -1,9 +1,9 @@
 import "./navbar.scss";
-import Search from "../../homePageComps/navbar/header/search/Search";
-import Logo from "../../homePageComps/navbar/header/logo/Logo";
+import Search from "../navbar/header/search/Search";
+import Logo from "../navbar/header/logo/Logo";
 import AccountSection from "./header/account&cart/AccountSection";
-import CategoryMenu from "../../homePageComps/navbar/categories/categoryMenu/CategoryMenu";
-import CategoryTiles from "../../homePageComps/navbar/categories/categoryTiles/CategoryTiles";
+import CategoryMenu from "../navbar/categories/categoryMenu/CategoryMenu";
+import CategoryTiles from "../navbar/categories/categoryTiles/CategoryTiles";
 import { useState } from "react";
 
 function Navbar() {

@@ -1,12 +1,11 @@
-const orderModel = require("../../../order/src/models/order.model");
-const productModel = require("../../../product/src/models/product.model");
+const orderModel = require("../models/order.model");
+const productModel = require("../models/product.model");
 const paymentModel = require("../models/payment.model");
 const userModel = require("../models/user.model");
 const { subscribeToQueue } = require("./broker");
 
 module.exports = async function () {
   subscribeToQueue("AUTH_SELLER_DASHBOARD.USER_CREATED", async (user) => {
-    
     await userModel.updateOne(
       { _id: user._id }, 
       { $set: user }, 
@@ -14,9 +13,7 @@ module.exports = async function () {
     );
   });
 
-  subscribeToQueue(
-    "PRODUCT_SELLER_DASHBOARD.PRODUCT_CREATED",
-    async (product) => {
+  subscribeToQueue("PRODUCT_SELLER_DASHBOARD.PRODUCT_CREATED",async (product) => {
       await productModel.updateOne(
         { _id: product._id },
         { $set: product },
