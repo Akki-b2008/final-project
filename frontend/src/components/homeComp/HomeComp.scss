@@ -1,0 +1,7 @@
+.heroCatSlider {
+  overflow: inherit !important;
+}
+
+.heroCatSlider .item:hover img {
+  transform: scale(1.1);
+}

@@ -1,11 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
 
-import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
 
 const heroCatSlider = [
@@ -69,13 +66,11 @@ const heroCatSlider = [
 
 const HeroCatSlider = () => {
   return (
-    <section className="heroCatSlider py-4">
+    <section className="heroCatSlider py-4 pb-8">
       <div className="container">
         <Swiper
           slidesPerView={8}
           spaceBetween={10}
-          navigation={true}
-          modules={[Navigation]}
           className="mySwiper"
         >
           {heroCatSlider.map((slide) => (

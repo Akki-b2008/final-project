@@ -1,5 +1,5 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "./HomeComp.scss"
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -38,7 +38,7 @@ const HeroSlider = () => {
         <Swiper
           spaceBetween={24}
           loop
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           modules={[Pagination, Autoplay]}
           className="sliderhome"
