@@ -4,9 +4,11 @@ import AdsBannerSlides from "./freeShippingBanner/AdsBannerSlides";
 
 const FreeShippingAndAds = () => {
   return (
-    <section className="py-16 px-8 flex flex-col gap-8 bg-white ">
+    <section className="py-16  bg-white ">
+      <div className="container flex flex-col gap-8">
       <FreeShippingBanner />
       <AdsBannerSlides items={4} />
+      </div>
     </section>
   );
 };

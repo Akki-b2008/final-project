@@ -11,7 +11,7 @@ const RightSection = () => {
   };
 
   return (
-    <div>
+    <div className="popularProducts-rightSec w-[58%]">
       <Tabs
         value={value}
         onChange={handleChange}

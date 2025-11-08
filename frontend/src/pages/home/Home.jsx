@@ -1,17 +1,14 @@
 import HeroSlider from "../../components/homeComp/HeroSlider";
 import HeroCatSlider from "../../components/homeComp/HeroCatSlider";
 import FreeShippingAndAds from "../../components/homeComp/FreeShippingAndAds";
+import PopularProducts from "../../components/homeComp/PopularProducts";
 
 const Home = () => {
   return (
     <div className="home">
-      <div className="bg-[#e7e2e2c5]">
-        <HeroSlider />
-        <HeroCatSlider />
-      </div>
-
-     
-
+      <HeroSlider />
+      <HeroCatSlider />
+      <PopularProducts />
       <FreeShippingAndAds />
     </div>
   );

@@ -1,4 +1,4 @@
-import "./navbar.scss";
+import "./navbar.css";
 import Search from "../navbar/header/search/Search";
 import Logo from "../navbar/header/logo/Logo";
 import AccountSection from "./header/account&cart/AccountSection";
@@ -10,7 +10,7 @@ function Navbar() {
   const [isOpenCategoryMenu, setIsOpenCategoryMenu] = useState(false);
 
   return (
-    <nav>
+    <nav className="bg-white">
       <div className="navbar flex justify-between items-center gap-4 w-full py-6 px-8 h-18 border-b-1 border-gray-300 ">
         <Logo />
         <Search />

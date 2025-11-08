@@ -12,8 +12,7 @@ const model = new ChatGoogleGenerativeAI({
   temperature: 0.5,
 });
 
-const graph = new StateGraph(MessagesAnnotation)
-  .addNode("tools", async (state, config) => {
+const graph = new StateGraph(MessagesAnnotation).addNode("tools", async (state, config) => {
     const lastMessage = state.messages[state.messages.length - 1];
 
     const toolsCall = lastMessage.tool_calls;

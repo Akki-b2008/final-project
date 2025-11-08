@@ -66,7 +66,7 @@ const heroCatSlider = [
 
 const HeroCatSlider = () => {
   return (
-    <section className="heroCatSlider py-4 pb-8">
+    <section className="heroCatSlider py-4 pb-8 bg-[#e7e2e2c5]">
       <div className="container">
         <Swiper
           slidesPerView={8}

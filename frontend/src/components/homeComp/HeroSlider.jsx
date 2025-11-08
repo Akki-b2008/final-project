@@ -1,10 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./HomeComp.scss"
 
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 const heroSlides = [
   {
@@ -33,14 +32,15 @@ const heroSlides = [
 
 const HeroSlider = () => {
   return (
-    <section className="home-slider py-4">
+    <section className="home-slider py-4 bg-[#e7e2e2c5]">
       <div className="container">
         <Swiper
           spaceBetween={24}
           loop
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          modules={[Pagination, Autoplay]}
+          modules={[Navigation, Autoplay]}
+          navigation={true}
           className="sliderhome"
         >
           {heroSlides.map((slide) => (
