@@ -11,7 +11,7 @@ const PopularProducts = () => {
           <RightSection />
         </div>
 
-        <ProductsSlider items={6} />
+        <ProductsSlider items={5} />
       </div>
     </section>
   );

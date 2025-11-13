@@ -12,8 +12,11 @@ const productsData = [
     title: "Women Wide Leg",
     subtitle: "Soylent Green",
     price: "₹799",
-    image:
-      "https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+
     href: "/",
   },
   {
@@ -21,8 +24,10 @@ const productsData = [
     title: "Minimalist Smartwatch",
     subtitle: "GadgetHub",
     price: "₹4,999",
-    image:
-      "https://serviceapi.spicezgold.com/download/1759451984694_pexels-on-shot-2798478.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -30,8 +35,10 @@ const productsData = [
     title: "Leather Office Bag",
     subtitle: "Urban Street",
     price: "₹2,499",
-    image:
-      "https://serviceapi.spicezgold.com/download/1735793110791_pexels-heitor-verdi-4835239.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -39,8 +46,10 @@ const productsData = [
     title: "Wireless Earbuds",
     subtitle: "SoundWave",
     price: "₹1,799",
-    image:
-      "https://serviceapi.spicezgold.com/download/1734029139186_pexels-cottonbro-5083408.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -48,8 +57,10 @@ const productsData = [
     title: "Fitness Tracker",
     subtitle: "WellnessPro",
     price: "₹1,299",
-    image:
-      "https://serviceapi.spicezgold.com/download/1729075843478_pexels-andres-ayrton-6551422.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -57,8 +68,10 @@ const productsData = [
     title: "Casual Sneakers",
     subtitle: "StreetStyle",
     price: "₹2,199",
-    image:
-      "https://serviceapi.spicezgold.com/download/1743985760457_pexels-ray-piedra-1478442.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -66,8 +79,10 @@ const productsData = [
     title: "Denim Jacket",
     subtitle: "Blue Horizon",
     price: "₹1,999",
-    image:
-      "https://serviceapi.spicezgold.com/download/1736017635802_pexels-kaique-rocha-338109.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
   {
@@ -75,8 +90,87 @@ const productsData = [
     title: "Classic Aviators",
     subtitle: "SunGuard",
     price: "₹999",
-    image:
-      "https://serviceapi.spicezgold.com/download/1718942750434_pexels-porapak-apichodilok-346745.jpg",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 9,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 10,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 11,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 12,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 13,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 14,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
+    href: "/",
+  },
+  {
+    id: 15,
+    title: "Classic Aviators",
+    subtitle: "SunGuard",
+    price: "₹999",
+    image1:
+      "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
+    image2:
+      "https://www.jiomart.com/images/product/original/441015307_ltyellow/oxford-regular-fit-shirt-with-patch-pocket-model3-441015307_ltyellow-3-202104091000.jpg?im=Resize=(600,750)",
     href: "/",
   },
 ];

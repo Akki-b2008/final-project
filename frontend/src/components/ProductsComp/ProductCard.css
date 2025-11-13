@@ -1,0 +1,15 @@
+.productCard .product-info .title {
+  line-height: 20px;
+}
+
+.productCard-addToCart:hover {
+  background-color: black;
+  color: white;
+  border: black;
+  transition: background-color 0.1s ease;
+}
+
+.productCard-actions button:hover svg {
+  color: rgb(247, 246, 246) !important;
+}
+
