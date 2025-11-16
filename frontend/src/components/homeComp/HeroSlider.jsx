@@ -32,7 +32,7 @@ const heroSlides = [
 
 const HeroSlider = () => {
   return (
-    <section className="home-slider py-4 bg-[#e7e2e2c5]">
+    <section className="home-slider py-4 pt-6 bg-[#e7e2e2c5]">
       <div className="container">
         <Swiper
           spaceBetween={24}

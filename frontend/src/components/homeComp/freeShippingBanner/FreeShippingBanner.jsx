@@ -3,7 +3,7 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 const FreeShippingBanner = () => {
   return (
     <div
-      className="freeShipping w-[80%] m-auto py-4 px-6
+      className="freeShipping w-[80%] m-auto py-4 px-6 
         flex items-center justify-between border-[red] border-2 bg-white rounded-[6px] shadow-md"
     >
       <div className="freeShipping-col1 text-center flex items-center gap-4">
