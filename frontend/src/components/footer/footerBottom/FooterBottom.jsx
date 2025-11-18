@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const FooterBottom = () => {
   return (
-    <div className="flex flex-col items-center bg-white py-4  border-t border-[rgba(121,120,120,0.5)]">
+    <div className="flex flex-col items-center bg-white py-4  border-t border-[rgba(189,185,185,0.84)]">
       <div className="flex gap-4 mb-4">
         <Link
           to={"https://www.linkedin.com/in/akash-rathore-652955239/"}

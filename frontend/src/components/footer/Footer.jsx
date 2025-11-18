@@ -5,10 +5,10 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#f5f0f0c7]">
+    <footer className="bg-[#f3f0f0]">
       <div className="container py-10">
         <FooterFeatures />
-        <div className="w-full h-[1px] bg-gray-400 mb-10"></div>
+        <div className="w-full h-[1.1px] bg-[rgba(189,185,185,0.5)] mb-10"></div>
         <FooterContent />
       </div>
       <FooterBottom />
