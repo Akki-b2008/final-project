@@ -81,7 +81,6 @@ body {
   display: block;
 }
 
-
 .home-slider .swiper-button-prev:hover,
 .home-slider .swiper-button-next:hover {
   background-color: #ef4444;
@@ -172,4 +171,8 @@ body {
 
 .MuiTab-textColorPrimary.Mui-selected {
   color: #ff5252 !important;
+}
+
+.MuiCheckbox-root{
+  padding: 5px !important;
 }

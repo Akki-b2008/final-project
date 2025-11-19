@@ -1,3 +1,8 @@
-::-webkit-scrollbar {
+.footer-features {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.footer-features::-webkit-scrollbar {
   display: none;
 }

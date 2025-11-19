@@ -9,41 +9,41 @@ import { PiKeyReturn } from "react-icons/pi";
 
 const FooterFeatures = () => {
   return (
-    <div className="flex gap-7 md:gap-12  whitespace-nowrap overflow-x-auto items-center font-montserrat justify-start md:justify-center pb-10">
-      <div className="flex-none flex flex-col gap-1 items-center ">
-        <LiaShippingFastSolid className="text-[42px]" />
+    <div className="footer-features flex gap-7 md:gap-12 whitespace-nowrap overflow-x-auto items-center font-montserrat justify-start md:justify-center pb-10">
+      <div className="flex-none flex flex-col gap-1 items-center p-2 group">
+        <LiaShippingFastSolid className="text-[42px] group-hover:text-red-500  group-hover:translate-y-[-5px] duration-200" />
         <h2 className="text-[16px] font-[500]">Free Shipping</h2>
         <p className="text-[13px] font-[400] text-[rgba(0,0,0,0.7)]">
           For all Orders Over 500 INR
         </p>
       </div>
 
-      <div className="flex-none flex flex-col gap-1 items-center ">
-        <PiKeyReturn className="text-[42px]" />
+      <div className="flex-none flex flex-col gap-1 items-center p-2 group">
+        <PiKeyReturn className="text-[42px] group-hover:text-red-500  group-hover:translate-y-[-5px] duration-200" />
         <h2 className="text-[16px] font-[500]">30 Days Returns</h2>
         <p className="text-[13px] font-[400] text-[rgba(0,0,0,0.7)]">
           For an Exchange Product
         </p>
       </div>
 
-      <div className="flex-none flex flex-col gap-1 items-center ">
-        <LiaGiftSolid className="text-[42px]" />
+      <div className="flex-none flex flex-col gap-1 items-center p-2 group">
+        <LiaGiftSolid className="text-[42px] group-hover:text-red-500  group-hover:translate-y-[-5px] duration-200" />
         <h2 className="text-[16px] font-[500]">Special Gifts</h2>
         <p className="text-[13px] font-[400] text-[rgba(0,0,0,0.7)]">
           Our First Product Order
         </p>
       </div>
 
-      <div className="flex-none flex flex-col gap-1 items-center ">
-        <IoWalletOutline className="text-[42px]" />
+      <div className="flex-none flex flex-col gap-1 items-center p-2 group">
+        <IoWalletOutline className="text-[42px] group-hover:text-red-500  group-hover:translate-y-[-5px] duration-200" />
         <h2 className="text-[16px] font-[500]">Secured Payment</h2>
         <p className="text-[13px] font-[400] text-[rgba(0,0,0,0.7)]">
           Payment Cards Accepted
         </p>
       </div>
 
-      <div className="flex-none flex flex-col gap-1 items-center ">
-        <BiSupport className="text-[42px]" />
+      <div className="flex-none flex flex-col gap-1 items-center p-2 group">
+        <BiSupport className="text-[42px] group-hover:text-red-500  group-hover:translate-y-[-5px] duration-200" />
         <h2 className="text-[16px] font-[500]">Support 24/7</h2>
         <p className="text-[13px] font-[400] text-[rgba(0,0,0,0.7)]">
           Contact us Anytime

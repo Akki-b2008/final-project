@@ -72,13 +72,6 @@ const CategoryTiles = () => {
                   </Button>
                 </Link>
               </li>
-              <li>
-                <Link to="/">
-                  <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start !rounded-none !pl-4">
-                    Girls
-                  </Button>
-                </Link>
-              </li>
             </ul>
           </div>
         </li>
