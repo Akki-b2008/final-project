@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
@@ -6,11 +5,13 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiGitCompare } from "react-icons/bi";
 import { LuExpand } from "react-icons/lu";
 import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
 
-const ProductCard = ({
-  title,
-  subtitle,
+const ProductCardGridView = ({
+  productName,
+  brandName,
   price,
+  rating,
   image1,
   image2,
   href = "/",
@@ -20,7 +21,7 @@ const ProductCard = ({
       <Link to={href} className="transition-all">
         <div className="product-imgWrapper w-full overflow-hidden group relative">
           <div className="images h-[250px] overflow-hidden ">
-            <img src={image1} alt={title} className="w-full" />
+            <img src={image1} alt={productName} className="w-full" />
 
             <img
               src={image2}
@@ -44,9 +45,14 @@ const ProductCard = ({
         </div>
 
         <div className="product-info p-3 font-montserrat flex flex-col gap-2">
-          <h6 className="text-[13px] font-[500] text-gray-600">{subtitle}</h6>
-          <h3 className="text-[15px] font-[600]">{title}</h3>
-          <p className="text-[16px] font-[600] text-red-600">{price}</p>
+          <h6 className="text-[13px] font-[500] text-gray-600">{brandName}</h6>
+          <h3 className="text-[15px] font-[600]">{productName}</h3>
+          <p className="text-[16px] font-[600] text-red-600 flex items-center justify-between">
+            {price}
+            <span>
+             <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+            </span>
+          </p>
         </div>
       </Link>
 
@@ -60,4 +66,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default ProductCardGridView;

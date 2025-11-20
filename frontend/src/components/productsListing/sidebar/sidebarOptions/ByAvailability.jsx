@@ -24,19 +24,13 @@ const ByAvailability = () => {
         <div className="scroll px-3 relative -left-[8px]">
           <FormControlLabel
             control={<Checkbox size="small" />}
-            label="Available"
-            className="w-full"
-          />
-
-          <FormControlLabel
-            control={<Checkbox size="small" />}
             label="Instock"
             className="w-full text-[12px]"
           />
 
           <FormControlLabel
             control={<Checkbox size="small" />}
-            label="Not Available"
+            label="Out of Stock"
             className="w-full"
           />
         </div>

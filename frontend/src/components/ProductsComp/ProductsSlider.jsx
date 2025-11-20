@@ -4,13 +4,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { Navigation } from "swiper/modules";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCardGridView";
 
 const productsData = [
   {
     id: 1,
-    title: "Women Wide Leg",
-    subtitle: "Soylent Green",
+    productName: "Women Wide Leg",
+    brandName: "Soylent Green",
     price: "₹799",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -21,8 +21,8 @@ const productsData = [
   },
   {
     id: 2,
-    title: "Minimalist Smartwatch",
-    subtitle: "GadgetHub",
+    productName: "Minimalist Smartwatch",
+    brandName: "GadgetHub",
     price: "₹4,999",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -32,8 +32,8 @@ const productsData = [
   },
   {
     id: 3,
-    title: "Leather Office Bag",
-    subtitle: "Urban Street",
+    productName: "Leather Office Bag",
+    brandName: "Urban Street",
     price: "₹2,499",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -43,8 +43,8 @@ const productsData = [
   },
   {
     id: 4,
-    title: "Wireless Earbuds",
-    subtitle: "SoundWave",
+    productName: "Wireless Earbuds",
+    brandName: "SoundWave",
     price: "₹1,799",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -54,8 +54,8 @@ const productsData = [
   },
   {
     id: 5,
-    title: "Fitness Tracker",
-    subtitle: "WellnessPro",
+    productName: "Fitness Tracker",
+    brandName: "WellnessPro",
     price: "₹1,299",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -65,8 +65,8 @@ const productsData = [
   },
   {
     id: 6,
-    title: "Casual Sneakers",
-    subtitle: "StreetStyle",
+    productName: "Casual Sneakers",
+    brandName: "StreetStyle",
     price: "₹2,199",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -76,8 +76,8 @@ const productsData = [
   },
   {
     id: 7,
-    title: "Denim Jacket",
-    subtitle: "Blue Horizon",
+    productName: "Denim Jacket",
+    brandName: "Blue Horizon",
     price: "₹1,999",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -87,8 +87,8 @@ const productsData = [
   },
   {
     id: 8,
-    title: "Classic Aviators",
-    subtitle: "SunGuard",
+    productName: "Classic Aviators",
+    brandName: "SunGuard",
     price: "₹999",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",
@@ -98,8 +98,8 @@ const productsData = [
   },
   {
     id: 9,
-    title: "Classic Aviators",
-    subtitle: "SunGuard",
+    productName: "Classic Aviators",
+    brandName: "SunGuard",
     price: "₹999",
     image1:
       "https://www.jiomart.com/images/product/original/420500217_red/men-typographic-print-slim-fit-crew-neck-t-shirt-model-420500217_red-0-202506231016.jpg?im=Resize=(280,280)",

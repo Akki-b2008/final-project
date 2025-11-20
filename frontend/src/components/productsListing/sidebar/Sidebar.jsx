@@ -7,14 +7,16 @@ import ByRating from "./sidebarOptions/ByRating";
 
 const Sidebar = () => {
   return (
-    <aside className="sidebar py-5">
-      <div className="w-full py-4 px-3">
-        <ByCategory />
-        <ByAvailability />
-        <ByPrice />
-        <ByRating />
-      </div>
-    </aside>
+    <div className="sidebarWrapper w-[20%] h-full bg-white sticky top-34 py-8 ">
+      <aside className="sidebar">
+        <div className="w-full px-3">
+          <ByCategory />
+          <ByAvailability />
+          <ByPrice />
+          <ByRating />
+        </div>
+      </aside>
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const AccountSection = () => {
   return (
-    <div className="account-section flex justify-end w-[30%] text-center mr-4">
+    <div className="account-section flex justify-end w-[20%] text-center mr-4">
       <ul className="list-style-none flex gap-4 items-center text-[#515151]">
         <li className="link text-[18px] ">
           <Link to="/login">Login</Link>
