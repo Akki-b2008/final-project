@@ -6,6 +6,7 @@ import { IoMenuSharp } from "react-icons/io5";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
+import Pagination from '@mui/material/Pagination';
 
 const productsData = [
   {
@@ -261,6 +262,10 @@ const ProductsListingSec = () => {
               <ProductCardListView key={product.id} {...product} />
             )
         )}
+      </div>
+
+      <div className="flex justify-center mt-4 px-4 py-4">
+        <Pagination count={10} showFirstButton showLastButton />
       </div>
     </div>
   );
